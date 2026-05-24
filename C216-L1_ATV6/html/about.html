@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Guilherme Felipe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --fg: #f0ede6; --accent: #c8f542; --muted: #3a3a3a; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Syne', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; border-bottom: 1px solid var(--muted); }
+    nav .logo { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: var(--fg); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.05em; transition: color 0.2s; }
+    nav ul a:hover, nav ul a.active { color: var(--accent); }
+
+    main { flex: 1; padding: 4rem 3rem; max-width: 900px; margin: 0 auto; width: 100%; }
+
+    .tag { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeUp 0.5s ease both; }
+
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 3rem; animation: fadeUp 0.5s 0.1s ease both; }
+    h1 span { color: var(--accent); }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; animation: fadeUp 0.5s 0.2s ease both; }
+
+    .card {
+      background: #141414;
+      border: 1px solid var(--muted);
+      border-radius: 4px;
+      padding: 1.8rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+
+    .card-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .card-value { font-size: 1.2rem; font-weight: 700; }
+    .card-sub { font-size: 0.9rem; color: #888; margin-top: 0.3rem; }
+
+    .bio { margin-top: 2.5rem; animation: fadeUp 0.5s 0.3s ease both; }
+    .bio h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: 'Space Mono', monospace; }
+    .bio p { color: #999; line-height: 1.8; font-size: 1rem; }
+
+    .skills { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; animation: fadeUp 0.5s 0.4s ease both; }
+    .skill { padding: 0.4rem 1rem; border: 1px solid var(--muted); border-radius: 2px; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #aaa; }
+
+    footer { text-align: center; padding: 1.5rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--muted); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">GFR · 2042</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <p class="tag">// Sobre mim</p>
+    <h1>About <span>Me</span></h1>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">Nome completo</div>
+        <div class="card-value">Guilherme Felipe Ribeiro</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Matrícula</div>
+        <div class="card-value">2042</div>
+        <div class="card-sub">Inatel</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Curso</div>
+        <div class="card-value">Engenharia de Computação</div>
+        <div class="card-sub">GEC</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Instituição</div>
+        <div class="card-value">Inatel</div>
+        <div class="card-sub">Santa Rita do Sapucaí - MG</div>
+      </div>
+    </div>
+
+    <div class="bio">
+      <h2>// Bio</h2>
+      <p>Estudante de Engenharia de Computação no Inatel, apaixonado por desenvolvimento de software, APIs REST, Docker e tecnologias modernas. Sempre em busca de novos desafios e aprendizados.</p>
+    </div>
+
+    <div class="skills">
+      <span class="skill">Python</span>
+      <span class="skill">FastAPI</span>
+      <span class="skill">Docker</span>
+      <span class="skill">PostgreSQL</span>
+      <span class="skill">Git</span>
+      <span class="skill">HTML/CSS</span>
+    </div>
+  </main>
+
+  <footer>© 2026 Guilherme Felipe Ribeiro · Matrícula 2042</footer>
+</body>
+</html>

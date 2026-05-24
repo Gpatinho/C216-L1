@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Guilherme Felipe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #f0ede6;
+      --accent: #c8f542;
+      --muted: #3a3a3a;
+      --card: #141414;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--muted);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    nav .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover, nav ul a.active { color: var(--accent); }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .matricula {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border: 1px solid var(--muted);
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    p.desc {
+      font-size: 1.1rem;
+      color: #999;
+      line-height: 1.7;
+      max-width: 500px;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s 0.6s ease both;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      border: 1px solid var(--muted);
+      color: var(--fg);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--muted);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">GFR · 2042</span>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <p class="tag">// Bem-vindo ao meu portfólio</p>
+    <h1>Guilherme<br><span>Felipe</span><br>Ribeiro</h1>
+    <div class="matricula">MAT: 2042</div>
+    <p class="desc">Estudante de Engenharia na Inatel. Apaixonado por tecnologia, desenvolvimento de software e inovação.</p>
+    <div class="links">
+      <a href="about.html" class="btn btn-primary">Sobre mim →</a>
+      <a href="contact.html" class="btn btn-outline">Contato</a>
+    </div>
+  </main>
+
+  <footer>© 2026 Guilherme Felipe Ribeiro · Matrícula 2042</footer>
+</body>
+</html>
