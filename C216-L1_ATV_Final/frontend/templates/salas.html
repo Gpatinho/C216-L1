@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Salas | Reservas{% endblock %}
+{% block content %}
+<h1>Gerenciar <span>Salas</span></h1>
+<p class="subtitle">// Cadastre e gerencie as salas disponíveis</p>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:2rem;">
+  <div>
+    <div class="section-title">// Salas Cadastradas</div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      {% for sala in salas %}
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="label">ID #{{ sala.id }}</div>
+            <div class="value">{{ sala.nome }}</div>
+            <div class="value-sm">📍 {{ sala.localizacao }} · 👥 {{ sala.capacidade }} pessoas</div>
+            {% if sala.recursos %}
+            <div style="margin-top:0.6rem;display:flex;gap:0.4rem;flex-wrap:wrap;">
+              {% for r in sala.recursos %}<span class="badge badge-gray">{{ r }}</span>{% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <a href="/salas/deletar/{{ sala.id }}" class="btn btn-danger" onclick="return confirm('Deletar?')">Deletar</a>
+        </div>
+        <hr style="border-color:#222;margin:1rem 0;">
+        <div class="label">Editar sala</div>
+        <form action="/salas/editar/{{ sala.id }}" method="POST">
+          <div class="form-row">
+            <input name="nome" placeholder="Nome" value="{{ sala.nome }}" required>
+            <input name="capacidade" type="number" placeholder="Capacidade" value="{{ sala.capacidade }}" required>
+          </div>
+          <input name="localizacao" placeholder="Localização" value="{{ sala.localizacao }}" required>
+          <button class="btn btn-outline" type="submit">Salvar alterações</button>
+        </form>
+        {% if recursos %}
+        <div style="margin-top:1rem;">
+          <div class="label">Adicionar recurso</div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.4rem;">
+            {% for r in recursos %}
+            <a href="/salas/{{ sala.id }}/recurso/{{ r.id }}" class="btn btn-outline" style="font-size:0.7rem;">+ {{ r.nome }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      {% else %}
+      <p style="color:#666;">Nenhuma sala cadastrada.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">// Nova Sala</div>
+    <div class="card">
+      <form action="/salas/criar" method="POST">
+        <div class="label">Nome da sala</div>
+        <input name="nome" placeholder="Ex: Sala A1" required>
+        <div class="label">Capacidade</div>
+        <input name="capacidade" type="number" placeholder="Ex: 20" required>
+        <div class="label">Localização</div>
+        <input name="localizacao" placeholder="Ex: Bloco B, 2º andar" required>
+        <button class="btn btn-primary" type="submit">Criar Sala →</button>
+      </form>
+    </div>
+
+    <div class="section-title" style="margin-top:1.5rem;">// Novo Recurso</div>
+    <div class="card">
+      <form action="/recursos/criar" method="POST">
+        <div class="label">Nome do recurso</div>
+        <input name="nome" placeholder="Ex: Projetor" required>
+        <button class="btn btn-primary" type="submit">Criar Recurso →</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

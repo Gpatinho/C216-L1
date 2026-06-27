@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Home | Reservas{% endblock %}
+{% block content %}
+<h1>Sistema de <span>Reservas</span></h1>
+<p class="subtitle">// Gerencie salas, reservas e usuários</p>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+  <div class="card" style="border-color:#333;">
+    <div class="label">Total de Salas</div>
+    <div style="font-size:2.5rem;font-weight:800;color:var(--accent);">{{ salas|length }}</div>
+  </div>
+  <div class="card" style="border-color:#333;">
+    <div class="label">Total de Reservas</div>
+    <div style="font-size:2.5rem;font-weight:800;color:var(--accent);">{{ reservas|length }}</div>
+  </div>
+  <div class="card" style="border-color:#333;">
+    <div class="label">Reservas Ativas</div>
+    <div style="font-size:2.5rem;font-weight:800;color:var(--accent);">{{ reservas|selectattr('status','eq','ativa')|list|length }}</div>
+  </div>
+</div>
+
+<div class="section-title">// Salas Disponíveis</div>
+<div class="grid">
+  {% for sala in salas %}
+  <div class="card">
+    <div class="label">Sala</div>
+    <div class="value">{{ sala.nome }}</div>
+    <div class="value-sm">📍 {{ sala.localizacao }}</div>
+    <div class="value-sm">👥 Capacidade: {{ sala.capacidade }}</div>
+    {% if sala.recursos %}
+    <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap;">
+      {% for r in sala.recursos %}<span class="badge badge-gray">{{ r }}</span>{% endfor %}
+    </div>
+    {% endif %}
+    <div class="actions">
+      <a href="/reservas" class="btn btn-primary">Reservar →</a>
+    </div>
+  </div>
+  {% else %}
+  <p style="color:#666;">Nenhuma sala cadastrada ainda.</p>
+  {% endfor %}
+</div>
+
+<hr class="divider">
+<div class="section-title">// Últimas Reservas</div>
+<div style="display:flex;flex-direction:column;gap:0.8rem;">
+  {% for r in reservas[:5] %}
+  <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <div class="value" style="margin-bottom:0.2rem;">{{ r.sala }} — {{ r.usuario }}</div>
+      <div class="value-sm">📅 {{ r.data }} · ⏰ {{ r.hora_inicio }} - {{ r.hora_fim }}</div>
+    </div>
+    <span class="badge {{ 'badge-green' if r.status == 'ativa' else 'badge-red' }}">{{ r.status }}</span>
+  </div>
+  {% else %}
+  <p style="color:#666;">Nenhuma reserva ainda.</p>
+  {% endfor %}
+</div>
+{% endblock %}

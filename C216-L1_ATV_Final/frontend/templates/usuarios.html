@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Usuários | Reservas{% endblock %}
+{% block content %}
+<h1>Gerenciar <span>Usuários</span></h1>
+<p class="subtitle">// Cadastre os usuários do sistema</p>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:2rem;">
+  <div>
+    <div class="section-title">// Usuários Cadastrados</div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;">
+      {% for u in usuarios %}
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="label">ID #{{ u.id }}</div>
+          <div class="value" style="margin-bottom:0.2rem;">{{ u.nome }}</div>
+          <div class="value-sm">✉ {{ u.email }}</div>
+        </div>
+        <a href="/usuarios/deletar/{{ u.id }}" class="btn btn-danger" onclick="return confirm('Deletar?')">Deletar</a>
+      </div>
+      {% else %}
+      <p style="color:#666;">Nenhum usuário cadastrado.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">// Novo Usuário</div>
+    <div class="card">
+      <form action="/usuarios/criar" method="POST">
+        <div class="label">Nome</div>
+        <input name="nome" placeholder="Nome completo" required>
+        <div class="label">Email</div>
+        <input name="email" type="email" placeholder="email@exemplo.com" required>
+        <button class="btn btn-primary" type="submit">Cadastrar →</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

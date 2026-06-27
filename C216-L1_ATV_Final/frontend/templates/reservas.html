@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Reservas{% endblock %}
+{% block content %}
+<h1>Gerenciar <span>Reservas</span></h1>
+<p class="subtitle">// Crie e gerencie as reservas de salas</p>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:2rem;">
+  <div>
+    <div class="section-title">// Reservas</div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      {% for r in reservas %}
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="label">Reserva #{{ r.id }}</div>
+            <div class="value">{{ r.sala }}</div>
+            <div class="value-sm">👤 {{ r.usuario }}</div>
+            <div class="value-sm">📅 {{ r.data }} · ⏰ {{ r.hora_inicio }} - {{ r.hora_fim }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;">
+            <span class="badge {{ 'badge-green' if r.status == 'ativa' else 'badge-red' }}">{{ r.status }}</span>
+            {% if r.status == 'ativa' %}
+            <a href="/reservas/cancelar/{{ r.id }}" class="btn btn-danger" onclick="return confirm('Cancelar?')">Cancelar</a>
+            {% endif %}
+          </div>
+        </div>
+        {% if r.status == 'ativa' %}
+        <hr style="border-color:#222;margin:1rem 0;">
+        <div class="label">Editar reserva</div>
+        <form action="/reservas/editar/{{ r.id }}" method="POST">
+          <div class="form-row">
+            <input name="data" type="date" value="{{ r.data }}" required>
+            <input name="hora_inicio" type="time" value="{{ r.hora_inicio }}" required>
+          </div>
+          <input name="hora_fim" type="time" value="{{ r.hora_fim }}" required>
+          <button class="btn btn-outline" type="submit">Salvar</button>
+        </form>
+        {% endif %}
+      </div>
+      {% else %}
+      <p style="color:#666;">Nenhuma reserva ainda.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">// Nova Reserva</div>
+    <div class="card">
+      <form action="/reservas/criar" method="POST">
+        <div class="label">Sala</div>
+        <select name="sala_id" required>
+          <option value="">Selecione a sala</option>
+          {% for s in salas %}<option value="{{ s.id }}">{{ s.nome }}</option>{% endfor %}
+        </select>
+        <div class="label">Usuário</div>
+        <select name="usuario_id" required>
+          <option value="">Selecione o usuário</option>
+          {% for u in usuarios %}<option value="{{ u.id }}">{{ u.nome }}</option>{% endfor %}
+        </select>
+        <div class="label">Data</div>
+        <input name="data" type="date" required>
+        <div class="label">Hora início</div>
+        <input name="hora_inicio" type="time" required>
+        <div class="label">Hora fim</div>
+        <input name="hora_fim" type="time" required>
+        <button class="btn btn-primary" type="submit">Criar Reserva →</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

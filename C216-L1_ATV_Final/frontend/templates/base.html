@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Reservas{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --fg: #f0ede6; --accent: #c8f542; --muted: #2a2a2a; --card: #141414; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Syne', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; border-bottom: 1px solid var(--muted); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+    nav .logo { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul a { color: #888; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.2s; padding: 0.3rem 0; border-bottom: 2px solid transparent; }
+    nav ul a:hover, nav ul a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    main { flex: 1; padding: 2.5rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    h1 span { color: var(--accent); }
+    .subtitle { color: #666; font-size: 0.9rem; font-family: 'Space Mono', monospace; margin-bottom: 2rem; }
+
+    .card { background: var(--card); border: 1px solid var(--muted); border-radius: 6px; padding: 1.5rem; transition: border-color 0.2s; }
+    .card:hover { border-color: #444; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 2px; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; }
+    .badge-green { background: rgba(200,245,66,0.15); color: var(--accent); }
+    .badge-red { background: rgba(255,80,80,0.15); color: #ff5050; }
+    .badge-gray { background: var(--muted); color: #888; }
+
+    .label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .value { font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .value-sm { font-size: 0.85rem; color: #888; }
+
+    form { display: flex; flex-direction: column; gap: 0.8rem; }
+    input, select { background: var(--muted); border: 1px solid #333; color: var(--fg); padding: 0.7rem 1rem; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; width: 100%; }
+    input:focus, select:focus { border-color: var(--accent); }
+    input::placeholder { color: #555; }
+
+    .btn { padding: 0.7rem 1.4rem; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; cursor: pointer; border: none; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-danger { background: rgba(255,80,80,0.15); color: #ff5050; border: 1px solid rgba(255,80,80,0.3); }
+    .btn-danger:hover { background: rgba(255,80,80,0.25); }
+    .btn-outline { background: transparent; color: var(--fg); border: 1px solid #444; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); font-family: 'Space Mono', monospace; }
+    .divider { border: none; border-top: 1px solid var(--muted); margin: 2rem 0; }
+    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+    footer { text-align: center; padding: 1.2rem; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #444; border-top: 1px solid var(--muted); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">// RESERVAS</span>
+    <ul>
+      <li><a href="/" class="{{ 'active' if request.path == '/' }}">Home</a></li>
+      <li><a href="/salas" class="{{ 'active' if '/salas' in request.path }}">Salas</a></li>
+      <li><a href="/reservas" class="{{ 'active' if '/reservas' in request.path }}">Reservas</a></li>
+      <li><a href="/usuarios" class="{{ 'active' if '/usuarios' in request.path }}">Usuários</a></li>
+    </ul>
+  </nav>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>Sistema de Reservas de Salas · Guilherme Felipe Ribeiro · 2042</footer>
+</body>
+</html>
